@@ -23,16 +23,28 @@
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
-html { height: 100%; background: #0c0c0b; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+  background: #0c0c0b;
+}
 body {
   background: var(--bg); color: var(--text);
   font-family: "IBM Plex Sans", sans-serif; font-size: 15px;
   display: flex; flex-direction: column;
-  max-width: 480px; margin: 0 auto;
-  height: 100dvh; height: 100vh;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100dvh;
+  height: -webkit-fill-available;
   overflow: hidden;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
   padding-top: var(--safe-top);
   padding-bottom: var(--safe-bottom);
+}
+@media (min-width: 481px) {
+  body { left: 50%; right: auto; transform: translateX(-50%); width: 480px; }
 }
 .header {
   flex-shrink: 0; padding: 14px 16px 12px;
@@ -550,6 +562,28 @@ function showToast(msg) {
 }
 
 init();
+
+// ── iOS KEYBOARD FIX ──
+// When keyboard opens, iOS resizes viewport - keep input visible
+if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+  const inputEl = document.getElementById("chatInput");
+  inputEl.addEventListener("focus", () => {
+    setTimeout(() => {
+      inputEl.scrollIntoView({ behavior: "smooth", block: "end" });
+      document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+    }, 350);
+  });
+
+  // Handle visual viewport resize (keyboard open/close)
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", () => {
+      const body = document.body;
+      const offset = window.innerHeight - window.visualViewport.height;
+      body.style.height = window.visualViewport.height + "px";
+      scrollBot();
+    });
+  }
+}
 </script>
 </body>
 </html>
