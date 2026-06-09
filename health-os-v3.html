@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Health OS">
+<meta name="theme-color" content="#0c0c0b">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<title>Health OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+:root {
+  --bg: #0c0c0b; --surface: #151514; --surface2: #1e1e1c;
+  --border: #272725; --border2: #323230;
+  --text: #ece9e0; --text2: #7a7870; --text3: #3a3a38;
+  --green: #b8e04a; --blue: #4ab8e0; --amber: #e0a84a; --red: #e05a4a;
+  --green-dim: rgba(184,224,74,0.08); --blue-dim: rgba(74,184,224,0.08);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+html { height: 100%; background: #0c0c0b; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: "IBM Plex Sans", sans-serif; font-size: 15px;
+  display: flex; flex-direction: column;
+  max-width: 480px; margin: 0 auto;
+  height: 100dvh; height: 100vh;
+  overflow: hidden;
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+}
+.header {
+  flex-shrink: 0; padding: 14px 16px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border); background: var(--bg);
+}
+.logo { font-family: "Instrument Serif", serif; font-size: 20px; display: flex; align-items: center; gap: 8px; }
+.logo-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: breathe 3s ease-in-out infinite; }
+@keyframes breathe { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+.header-right { display: flex; align-items: center; gap: 8px; }
+.weight-badge { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--green); background: var(--green-dim); border: 1px solid rgba(184,224,74,0.2); padding: 3px 9px; border-radius: 20px; }
+.settings-btn { width: 30px; height: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text2); transition: all 0.15s; }
+.quick-bar { flex-shrink: 0; padding: 10px 12px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border); background: var(--surface); }
+.quick-bar::-webkit-scrollbar { display: none; }
+.quick-chip { flex-shrink: 0; padding: 6px 12px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 20px; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--text2); cursor: pointer; transition: all 0.15s; white-space: nowrap; user-select: none; }
+.quick-chip:active { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+.chat { flex: 1; overflow-y: auto; padding: 16px 14px; display: flex; flex-direction: column; gap: 12px; -webkit-overflow-scrolling: touch; }
+.chat::-webkit-scrollbar { width: 3px; }
+.chat::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+.msg { display: flex; flex-direction: column; max-width: 88%; animation: fadeUp 0.25s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.msg.user { align-self: flex-end; align-items: flex-end; }
+.msg.assistant { align-self: flex-start; align-items: flex-start; }
+.msg-bubble { padding: 10px 13px; border-radius: 14px; font-size: 14px; line-height: 1.6; word-break: break-word; }
+.msg.user .msg-bubble { background: var(--surface2); border: 1px solid var(--border2); border-bottom-right-radius: 4px; }
+.msg.assistant .msg-bubble { background: var(--surface); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+.msg-time { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--text3); margin-top: 3px; padding: 0 2px; }
+.msg-bubble strong { color: var(--text); font-weight: 600; }
+.msg-bubble em { color: var(--text2); font-style: italic; }
+.msg-bubble h3 { font-size: 13px; font-weight: 500; color: var(--text); margin: 8px 0 4px; font-family: "IBM Plex Mono", monospace; }
+.msg-bubble ul { padding-left: 16px; margin: 6px 0; }
+.msg-bubble li { margin: 3px 0; font-size: 13px; }
+.msg-bubble p { margin: 4px 0; }
+.msg-bubble p:first-child { margin-top: 0; }
+.msg-bubble p:last-child { margin-bottom: 0; }
+.msg-bubble hr { border: none; border-top: 1px solid var(--border); margin: 8px 0; }
+.typing-indicator { display: flex; align-items: center; gap: 4px; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; border-bottom-left-radius: 4px; width: fit-content; }
+.typing-dot { width: 5px; height: 5px; background: var(--text3); border-radius: 50%; animation: typing 1.2s infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-4px)} }
+.day-sep { display: flex; align-items: center; gap: 10px; font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin: 4px 0; }
+.day-sep::before, .day-sep::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.input-area { flex-shrink: 0; padding: 10px 12px 14px; border-top: 1px solid var(--border); background: var(--bg); }
+.input-row { display: flex; gap: 8px; align-items: flex-end; }
+.input-wrap { flex: 1; background: var(--surface); border: 1px solid var(--border2); border-radius: 16px; display: flex; align-items: flex-end; gap: 6px; padding: 6px 10px 6px 14px; transition: border-color 0.15s; }
+.input-wrap:focus-within { border-color: rgba(184,224,74,0.4); }
+.chat-input { flex: 1; background: transparent; border: none; color: var(--text); font-family: "IBM Plex Sans", sans-serif; font-size: 15px; line-height: 1.5; outline: none; resize: none; max-height: 100px; min-height: 22px; padding: 4px 0; }
+.chat-input::placeholder { color: var(--text3); }
+.voice-btn-inline { width: 28px; height: 28px; background: transparent; border: none; color: var(--text3); cursor: pointer; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: all 0.15s; padding-bottom: 2px; }
+.voice-btn-inline.recording { color: var(--red); animation: recpulse 1s infinite; }
+@keyframes recpulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.send-btn { width: 42px; height: 42px; background: var(--green); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; color: #0c0c0b; font-weight: bold; transition: opacity 0.15s; }
+.send-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.panel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 50; align-items: flex-end; justify-content: center; }
+.panel-overlay.open { display: flex; }
+.panel { background: var(--surface); border: 1px solid var(--border2); border-radius: 20px 20px 0 0; padding: 20px 18px 28px; width: 100%; max-width: 480px; max-height: 85dvh; overflow-y: auto; }
+.panel-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 2px; margin: 0 auto 18px; }
+.panel-title { font-family: "Instrument Serif", serif; font-size: 18px; margin-bottom: 16px; }
+.sg { margin-bottom: 14px; }
+.sl { font-family: "IBM Plex Mono", monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); margin-bottom: 6px; display: block; }
+.si { width: 100%; background: var(--surface2); border: 1px solid var(--border2); color: var(--text); font-family: "IBM Plex Sans", sans-serif; font-size: 14px; padding: 10px 12px; border-radius: 10px; outline: none; transition: border-color 0.15s; }
+.si:focus { border-color: rgba(184,224,74,0.4); }
+.si[type=password] { letter-spacing: 2px; font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+textarea.si { resize: none; height: 70px; font-size: 13px; line-height: 1.5; }
+.pb { width: 100%; padding: 12px; border-radius: 10px; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.5px; cursor: pointer; transition: all 0.15s; margin-top: 6px; }
+.pb.primary { background: var(--green); border: none; color: #0c0c0b; font-weight: 500; }
+.pb.ghost { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
+.pb.danger { background: transparent; border: 1px solid rgba(224,90,74,0.3); color: var(--red); opacity: 0.6; margin-top: 12px; }
+.pb.danger:active { opacity: 1; }
+.sc { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--green); text-align: center; padding: 6px; opacity: 0; transition: opacity 0.3s; }
+.sc.show { opacity: 1; }
+.no-api { background: rgba(224,168,74,0.06); border: 1px solid rgba(224,168,74,0.2); border-radius: 10px; padding: 10px 12px; font-size: 12px; color: var(--amber); line-height: 1.5; cursor: pointer; }
+.toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--surface2); border: 1px solid var(--border2); color: var(--text2); font-family: "IBM Plex Mono", monospace; font-size: 11px; padding: 8px 14px; border-radius: 20px; opacity: 0; transition: all 0.25s; z-index: 100; pointer-events: none; white-space: nowrap; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.error-bubble { background: rgba(224,90,74,0.08); border: 1px solid rgba(224,90,74,0.2); border-radius: 10px; padding: 10px 12px; font-size: 12px; color: var(--red); line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo"><div class="logo-dot"></div>Health OS</div>
+  <div class="header-right">
+    <div class="weight-badge" id="weightBadge" style="display:none"></div>
+    <button class="settings-btn" onclick="openPanel()">⚙</button>
+  </div>
+</div>
+<div class="quick-bar">
+  <div class="quick-chip" onclick="quickSend('Trainingsplan für heute')">💪 Training</div>
+  <div class="quick-chip" onclick="quickSend('Was soll ich essen?')">🍽 Was essen?</div>
+  <div class="quick-chip" onclick="quickSend('Tagesanalyse bitte')">📊 Analyse</div>
+  <div class="quick-chip" onclick="quickSend('Bin ich überlastet?')">🔋 Recovery</div>
+  <div class="quick-chip" onclick="quickSend('Gewicht heute Morgen: ', true)">⚖ Gewicht</div>
+  <div class="quick-chip" onclick="quickSend('Ist das eine gute Wahl? ', true)">✅ Check</div>
+</div>
+<div class="chat" id="chat"></div>
+<div class="input-area">
+  <div class="input-row">
+    <div class="input-wrap">
+      <textarea class="chat-input" id="chatInput" placeholder="Schreib oder sprich…" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="voice-btn-inline" id="voiceBtn" onclick="toggleVoice()">🎙</button>
+    </div>
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
+  </div>
+</div>
+<div class="panel-overlay" id="panelOverlay" onclick="closePanelOut(event)">
+  <div class="panel">
+    <div class="panel-handle"></div>
+    <div class="panel-title">Einstellungen</div>
+    <div class="sg"><label class="sl">Anthropic API Key</label><input type="password" class="si" id="apiKeyInput" placeholder="sk-ant-api03-…" autocomplete="off"></div>
+    <div class="sg"><label class="sl">Dein Name</label><input type="text" class="si" id="nameInput" placeholder="Mike"></div>
+    <div class="sg"><label class="sl">Ziele</label><textarea class="si" id="goalsInput" placeholder="Zielgewicht 64kg. Muskeln definieren. Langfristig gesund."></textarea></div>
+    <div class="sg"><label class="sl">Verletzungen / Einschränkungen</label><textarea class="si" id="injuriesInput" placeholder="Schulterprobleme rechts. Rücken & Hüfte steif."></textarea></div>
+    <button class="pb primary" onclick="saveSettings()">Speichern</button>
+    <div class="sc" id="saveConfirm">✓ Gespeichert</div>
+    <button class="pb ghost" onclick="closePanel()">Schließen</button>
+    <button class="pb danger" onclick="clearData()">Alle Daten löschen</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const MSGS_KEY = "hos_v3_messages";
+const SETTINGS_KEY = "hos_v3_settings";
+const MEMORY_KEY = "hos_v3_memory";
+
+function ls(k) { try { return JSON.parse(localStorage.getItem(k)) || null; } catch { return null; } }
+function lss(k,v) { localStorage.setItem(k, JSON.stringify(v)); }
+
+let messages = ls(MSGS_KEY) || [];
+let settings = ls(SETTINGS_KEY) || {};
+let memory = ls(MEMORY_KEY) || {}; // { "2026-06-09": { summary: "...", weight: "75.1", training: "...", food: "...", notes: "..." } }
+
+// ── MEMORY FUNCTIONS ──
+function todayKey() { return new Date().toISOString().slice(0,10); }
+
+function offsetKey(daysAgo) {
+  const d = new Date(); d.setDate(d.getDate() - daysAgo);
+  return d.toISOString().slice(0,10);
+}
+
+// Extract structured facts from a user message and store in memory
+function learnFromMessage(text) {
+  const t = text.toLowerCase();
+  const today = memory[todayKey()] || {};
+
+  // Detect date references → store under correct key
+  let targetKey = todayKey();
+  if (t.includes("gestern")) targetKey = offsetKey(1);
+  else if (t.includes("vorgestern")) targetKey = offsetKey(2);
+  else if (t.match(/vor (\d) tag/)) {
+    const days = parseInt(t.match(/vor (\d) tag/)[1]);
+    targetKey = offsetKey(days);
+  }
+
+  const entry = memory[targetKey] || {};
+
+  // Weight
+  const wm = text.match(/(\d{2,3}[,.]\d)\s*kg/i) || text.match(/(\d{2,3})\s*kg/i);
+  if (wm) {
+    const w = parseFloat(wm[1].replace(",","."));
+    if (w > 50 && w < 200) {
+      entry.weight = w + "kg";
+      if (targetKey === todayKey()) { settings.lastWeight = w+"kg"; lss(SETTINGS_KEY, settings); updateWeightBadge(); }
+    }
+  }
+
+  // Steps
+  const sm = text.match(/(\d[\d.,]+)\s*schritt/i);
+  if (sm) entry.steps = sm[1].replace(/[.,]/g,"") + " Schritte";
+
+  // Training keywords
+  const trainKw = ["gym","training","workout","kraft","cardio","laufen","laufband","fahrrad","mobility","yoga","schwimmen","spazieren"];
+  if (trainKw.some(k => t.includes(k))) {
+    entry.training = (entry.training ? entry.training + "; " : "") + text.slice(0, 120);
+  }
+
+  // Food/drink keywords
+  const foodKw = ["gegessen","essen","frühstück","mittag","abendessen","getrunken","bier","wein","kaffee","protein","snack","restaurant","brunch"];
+  if (foodKw.some(k => t.includes(k))) {
+    entry.food = (entry.food ? entry.food + "; " : "") + text.slice(0, 120);
+  }
+
+  // Sleep
+  const sleepM = text.match(/(\d+[,.]\d*)\s*stunden?\s*(geschlafen|schlaf)/i) || text.match(/(gut|schlecht|schlecht)\s*geschlafen/i);
+  if (sleepM) entry.sleep = sleepM[0];
+
+  // Pain/recovery
+  const painKw = ["schmerz","wehtut","weh","steif","verletzt","müde","erschöpft","regeneration"];
+  if (painKw.some(k => t.includes(k))) entry.notes = (entry.notes ? entry.notes + "; " : "") + text.slice(0, 80);
+
+  // Always store raw note if entry has content
+  if (Object.keys(entry).length > 0) {
+    memory[targetKey] = entry;
+    // Keep only last 14 days
+    const keys = Object.keys(memory).sort().reverse().slice(0, 14);
+    const trimmed = {}; keys.forEach(k => trimmed[k] = memory[k]);
+    memory = trimmed;
+    lss(MEMORY_KEY, memory);
+  }
+}
+
+// Build a 7-day memory summary string for the system prompt
+function buildMemorySummary() {
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const key = offsetKey(i);
+    const entry = memory[key];
+    if (!entry || Object.keys(entry).length === 0) continue;
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const label = i === 0 ? "Heute" : i === 1 ? "Gestern" : d.toLocaleDateString("de-DE", {weekday:"short", day:"numeric"});
+    const parts = [];
+    if (entry.weight) parts.push(entry.weight);
+    if (entry.sleep) parts.push(entry.sleep);
+    if (entry.steps) parts.push(entry.steps);
+    if (entry.training) parts.push("Training: " + entry.training.slice(0,80));
+    if (entry.food) parts.push("Essen: " + entry.food.slice(0,100));
+    if (entry.notes) parts.push("⚠ " + entry.notes.slice(0,60));
+    if (parts.length) days.push(`${label}: ${parts.join(" | ")}`);
+  }
+  return days.length ? "\n\nGEDÄCHTNIS (letzte 7 Tage):\n" + days.join("\n") : "";
+}
+
+// ── SYSTEM PROMPT ──
+function buildSystem() {
+  const name = settings.name || "Mike";
+  const goals = settings.goals || "Zielgewicht 64kg langfristig, aktuell Zwischenziel 74kg. Fett abbauen, Muskeln definieren.";
+  const injuries = settings.injuries || "Schulterprobleme rechts, unterer Rücken & Hüfte gelegentlich steif.";
+  const weight = settings.lastWeight || "~75kg";
+  const today = new Date().toLocaleDateString("de-DE", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+  return `Du bist ${name}s persönlicher Health OS Coach. Heute ist ${today}.
+
+PROFIL:
+- Name: ${name} | 38J | 1,68m | Gewicht: ${weight}
+- Ziele: ${goals}
+- Einschränkungen: ${injuries}
+- Job: Bürojob | Training: 3-4x/Woche Kraft+Cardio
+- Equipment: Laufband, Fahrrad, Hanteln, Gym (alle Geräte)
+- Trainingsphilosophie: Sjard Roscher, progressives Overload, Zone 2 Cardio, Longevity-orientiert
+- Ernährung: Protein-fokussiert, mag Fisch/Beef/Salate/asiatisch
+
+COACHING-STIL:
+- Direkt und konkret, kein Bullshit
+- Immer spezifische Gewichte/Wiederholungen/Zeiten nennen
+- Essen ehrlich bewerten
+- Auf frühere Nachrichten im Chat eingehen
+- Deutsch, Du-Form
+- Kurze Antworten außer bei Trainingsplänen
+- Markdown für Struktur nutzen
+- Wenn Nutzer vergangene Tage erwähnt ("gestern", "vorgestern"), beziehe das korrekt ein${buildMemorySummary()}`;
+}
+
+// ── INIT ──
+function init() {
+  if (settings.apiKey) document.getElementById("apiKeyInput").value = settings.apiKey;
+  if (settings.name) document.getElementById("nameInput").value = settings.name;
+  if (settings.goals) document.getElementById("goalsInput").value = settings.goals;
+  if (settings.injuries) document.getElementById("injuriesInput").value = settings.injuries;
+  updateWeightBadge();
+
+  if (!messages.length) {
+    const name = settings.name || "Mike";
+    const today = new Date().toLocaleDateString("de-DE", {weekday:"long", day:"numeric", month:"long"});
+    addMsg("assistant", `Guten Morgen, ${name}! 👋\n\nHeute ist ${today}. Ich bin dein Health OS Coach.\n\nSchreib einfach was du gegessen hast, was du trainieren willst, oder wie du dich fühlst – ich bin dabei.\n\n**Beispiele:**\n- _"75,1kg heute Morgen"_\n- _"Heute Gym, 60 Min – erstell mir einen Plan"_\n- _"Frühstück: Müsli + Ei – gut oder nicht?"_\n\nLos geht\'s 💪`, false);
+  } else {
+    renderAll();
+  }
+
+  if (!settings.apiKey) showApiNotice();
+  scrollBot();
+}
+
+// ── RENDER ──
+function renderAll() {
+  const chat = document.getElementById("chat");
+  chat.innerHTML = "";
+  let lastDate = null;
+  messages.forEach(m => {
+    const d = m.time ? new Date(m.time).toDateString() : null;
+    if (d && d !== lastDate) { addSep(new Date(m.time)); lastDate = d; }
+    chat.appendChild(makeBubble(m));
+  });
+}
+
+function addSep(date) {
+  const chat = document.getElementById("chat");
+  const today = new Date();
+  const yest = new Date(); yest.setDate(yest.getDate()-1);
+  let label = date.toDateString() === today.toDateString() ? "Heute"
+    : date.toDateString() === yest.toDateString() ? "Gestern"
+    : date.toLocaleDateString("de-DE", {weekday:"short", day:"numeric", month:"short"});
+  const sep = document.createElement("div");
+  sep.className = "day-sep";
+  sep.textContent = label;
+  chat.appendChild(sep);
+}
+
+function makeBubble(msg) {
+  const el = document.createElement("div");
+  el.className = "msg " + msg.role;
+  const bubble = document.createElement("div");
+  bubble.className = "msg-bubble";
+  bubble.innerHTML = md(msg.content);
+  const time = document.createElement("div");
+  time.className = "msg-time";
+  if (msg.time) time.textContent = new Date(msg.time).toLocaleTimeString("de-DE", {hour:"2-digit",minute:"2-digit"});
+  el.appendChild(bubble); el.appendChild(time);
+  return el;
+}
+
+function md(text) {
+  if (!text) return "";
+  const escaped = text
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  let h = escaped
+    .replace(/^### (.+)$/gm,"<h3>$1</h3>")
+    .replace(/^## (.+)$/gm,"<h3>$1</h3>")
+    .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g,"<em>$1</em>")
+    .replace(/_(.+?)_/g,"<em>$1</em>")
+    .replace(/^---$/gm,"<hr>")
+    .replace(/^[-•] (.+)$/gm,"<li>$1</li>")
+    .replace(/^\d+\. (.+)$/gm,"<li>$1</li>");
+  // Wrap consecutive li items
+  h = h.replace(/(<li>[\s\S]*?<\/li>(?:\s*<li>[\s\S]*?<\/li>)*)/g,"<ul>$1</ul>");
+  // Paragraphs
+  const parts = h.split(/\n\n+/);
+  return parts.map(p => {
+    p = p.replace(/\n/g,"<br>");
+    if (p.startsWith("<h3>") || p.startsWith("<ul>") || p.startsWith("<hr>") || p.startsWith("<li>")) return p;
+    return "<p>" + p + "</p>";
+  }).join("\n");
+}
+
+function addMsg(role, content, save=true) {
+  const msg = { role, content, time: new Date().toISOString() };
+  messages.push(msg);
+  if (save) lss(MSGS_KEY, messages.slice(-200));
+
+  const chat = document.getElementById("chat");
+  // Day sep?
+  if (messages.length > 1) {
+    const prev = messages[messages.length-2];
+    const prevDate = prev.time ? new Date(prev.time).toDateString() : null;
+    const nowDate = new Date(msg.time).toDateString();
+    if (prevDate && prevDate !== nowDate) addSep(new Date(msg.time));
+  }
+  const el = makeBubble(msg);
+  chat.appendChild(el);
+  scrollBot();
+  return msg;
+}
+
+function showTyping() {
+  const chat = document.getElementById("chat");
+  const el = document.createElement("div");
+  el.className = "msg assistant"; el.id = "typing";
+  el.innerHTML = \`<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>\`;
+  chat.appendChild(el); scrollBot();
+}
+function hideTyping() { const el = document.getElementById("typing"); if(el) el.remove(); }
+function scrollBot() { const c = document.getElementById("chat"); setTimeout(()=>c.scrollTop=c.scrollHeight, 60); }
+
+function showApiNotice() {
+  const chat = document.getElementById("chat");
+  const n = document.createElement("div");
+  n.className = "no-api"; n.id = "apiNotice";
+  n.innerHTML = "⚙ Kein API Key gesetzt. Tippe auf <strong>⚙</strong> oben rechts und trage deinen Anthropic API Key ein.";
+  n.onclick = openPanel;
+  chat.insertBefore(n, chat.firstChild);
+}
+
+// ── SEND ──
+async function sendMessage() {
+  const input = document.getElementById("chatInput");
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = ""; autoResize(input);
+
+  // Learn from message → update memory
+  learnFromMessage(text);
+
+  addMsg("user", text);
+
+  if (!settings.apiKey) {
+    addMsg("assistant", "Kein API Key gesetzt. Bitte ⚙ öffnen und API Key eintragen.");
+    return;
+  }
+
+  showTyping();
+  document.getElementById("sendBtn").disabled = true;
+
+  try {
+    const reply = await callAPI(text);
+    hideTyping();
+    addMsg("assistant", reply);
+  } catch(e) {
+    hideTyping();
+    const chat = document.getElementById("chat");
+    const errEl = document.createElement("div");
+    errEl.className = "msg assistant";
+    errEl.innerHTML = \`<div class="error-bubble">⚠ Fehler: \${e.message}<br><small style="opacity:0.7">API Key prüfen · CORS nur in Chrome · Seite neu laden</small></div>\`;
+    chat.appendChild(errEl);
+    scrollBot();
+  }
+
+  document.getElementById("sendBtn").disabled = false;
+}
+
+async function callAPI(userText) {
+  // Build history – exclude welcome message for API context
+  const hist = messages
+    .slice(-31, -1)
+    .filter(m => (m.role==="user"||m.role==="assistant") && m.content.length < 3000)
+    .map(m => ({ role: m.role, content: m.content }));
+
+  hist.push({ role: "user", content: userText });
+
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": settings.apiKey,
+      "anthropic-version": "2023-06-01",
+      "anthropic-dangerous-direct-browser-access": "true"
+    },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 1024,
+      system: buildSystem(),
+      messages: hist
+    })
+  });
+
+  if (!res.ok) {
+    let msg = "HTTP " + res.status;
+    try { const j = await res.json(); msg = j.error?.message || msg; } catch {}
+    if (res.status === 401) msg = "Ungültiger API Key. Bitte in ⚙ Einstellungen prüfen.";
+    if (res.status === 429) msg = "Rate Limit erreicht. Kurz warten und nochmal versuchen.";
+    throw new Error(msg);
+  }
+
+  const data = await res.json();
+  return data.content[0].text;
+}
+
+function quickSend(text, focusOnly=false) {
+  const input = document.getElementById("chatInput");
+  input.value = text; autoResize(input); input.focus();
+  if (!focusOnly) sendMessage();
+}
+
+function handleKey(e) {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
+
+function autoResize(el) {
+  el.style.height = "auto";
+  el.style.height = Math.min(el.scrollHeight, 100) + "px";
+}
+
+function updateWeightBadge() {
+  const b = document.getElementById("weightBadge");
+  if (settings.lastWeight) { b.textContent = settings.lastWeight; b.style.display = "block"; }
+}
+
+// ── VOICE ──
+let recognition = null, isRecording = false;
+function toggleVoice() {
+  if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
+    showToast("Spracherkennung nur in Chrome verfügbar"); return;
+  }
+  if (isRecording) { recognition.stop(); return; }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = "de-DE"; recognition.continuous = false; recognition.interimResults = false;
+  const btn = document.getElementById("voiceBtn");
+  recognition.onstart = () => { isRecording=true; btn.classList.add("recording"); btn.textContent="⏹"; };
+  recognition.onresult = e => {
+    const t = e.results[0][0].transcript;
+    document.getElementById("chatInput").value = t;
+    autoResize(document.getElementById("chatInput"));
+  };
+  recognition.onend = () => { isRecording=false; btn.classList.remove("recording"); btn.textContent="🎙"; };
+  recognition.onerror = () => { isRecording=false; btn.classList.remove("recording"); btn.textContent="🎙"; showToast("Spracherkennung fehlgeschlagen"); };
+  recognition.start();
+}
+
+// ── SETTINGS ──
+function openPanel() { document.getElementById("panelOverlay").classList.add("open"); }
+function closePanel() { document.getElementById("panelOverlay").classList.remove("open"); }
+function closePanelOut(e) { if(e.target===document.getElementById("panelOverlay")) closePanel(); }
+
+function saveSettings() {
+  settings.apiKey = document.getElementById("apiKeyInput").value.trim();
+  settings.name = document.getElementById("nameInput").value.trim();
+  settings.goals = document.getElementById("goalsInput").value.trim();
+  settings.injuries = document.getElementById("injuriesInput").value.trim();
+  lss(SETTINGS_KEY, settings);
+  const n = document.getElementById("apiNotice"); if(n && settings.apiKey) n.remove();
+  const sc = document.getElementById("saveConfirm"); sc.classList.add("show"); setTimeout(()=>sc.classList.remove("show"), 2000);
+}
+
+function clearData() {
+  if(!confirm("Alle Nachrichten löschen?")) return;
+  localStorage.removeItem(MSGS_KEY);
+  localStorage.removeItem(MEMORY_KEY);
+  messages = []; memory = {};
+  document.getElementById("chat").innerHTML = "";
+  closePanel(); init();
+}
+
+function showToast(msg) {
+  const t = document.getElementById("toast"); t.textContent = msg;
+  t.classList.add("show"); setTimeout(()=>t.classList.remove("show"), 3000);
+}
+
+init();
+</script>
+</body>
+</html>
